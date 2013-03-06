@@ -33,8 +33,12 @@ puts "The count is now: #{counter[:get_count].call}"
 
 # Which all seems great except  ...
 
+puts "It is a Proc" if counter[:inc].class == Proc
+
+puts "It has a binding!" if counter[:inc].binding
+
 binding_count = eval("count", counter[:inc].binding)
-puts "Accessing count through the binding: #{binding_count}"
+puts "Accessing the count through the binding: #{binding_count}"
 
 eval("count = 3.14159", counter[:inc].binding)
 puts "The count is now: #{counter[:get_count].call}"

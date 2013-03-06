@@ -9,12 +9,12 @@ counter = (-> do
   pub
 end).call
 
-puts "The count is: #{counter[:get_count].call}"
+puts "The count is: #{ counter[:get_count].call }"
 
 counter[:inc].call
 counter[:inc].call
 
-puts "The count went up to: #{counter[:get_count].call}"
+puts "The count went up to: #{ counter[:get_count].call }"
 
 begin
   counter.instance_variable_set(:count, 3.14159)
@@ -24,21 +24,22 @@ end
 
 counter.instance_variable_set(:@count, 3.14159)
 
-puts "The count is still: #{counter[:get_count].call}"
+puts "The count is still: #{ counter[:get_count].call }"
 
 counter[:reset].call
 
-puts "The count is now: #{counter[:get_count].call}"
+puts "The count is now: #{ counter[:get_count].call }"
 
 
 # Which all seems great except  ...
+puts "It is a lambda" if counts[:inc].lambda?
 
-puts "It is a Proc" if counter[:inc].class == Proc
+puts "But it is also Proc" if counter[:inc].class == Proc
 
-puts "It has a binding!" if counter[:inc].binding
+puts "And it therefore has a binding!" if counter[:inc].binding
 
 binding_count = eval("count", counter[:inc].binding)
-puts "Accessing the count through the binding: #{binding_count}"
+puts "Accessing the count through the binding: #{ binding_count }"
 
 eval("count = 3.14159", counter[:inc].binding)
-puts "The count is now: #{counter[:get_count].call}"
+puts "The count is now: #{ counter[:get_count].call }"

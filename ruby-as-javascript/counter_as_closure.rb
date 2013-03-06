@@ -32,7 +32,7 @@ puts "The count is now: #{ counter[:get_count].call }"
 
 
 # Which all seems great except  ...
-puts "It is a lambda" if counts[:inc].lambda?
+puts "It is a lambda" if counter[:inc].lambda?
 
 puts "But it is also Proc" if counter[:inc].class == Proc
 
